@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "scripts": {
     "dev": "next dev -p 3003",
-    "build": "next build && next export -o out"
+    "build": "next build && next export"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.0",
