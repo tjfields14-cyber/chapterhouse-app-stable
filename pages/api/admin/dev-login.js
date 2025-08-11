@@ -9,16 +9,16 @@ export default async function handler(req, res) {
     }
     if (!email) return res.status(400).json({ error: "email required" });
 
-    // Ensure user exists & is confirmed
+    // ensure user exists & confirmed
     await supabaseAdmin.auth.admin.createUser({ email, email_confirm: true }).catch(()=>{});
 
-    // Allowlist in admins table
+    // allowlist in admins table
     await supabaseAdmin.from("admins").upsert(
       { email, username: email.split("@")[0], is_active: true },
       { onConflict: "email" }
     );
 
-    // Generate magic link and redirect (auto-signs in)
+    // generate magic link and redirect to it (auto-signs in)
     const host = process.env.SITE_URL || `https://${req.headers.host}`;
     const redirectTo = host + "/admin/dashboard";
 
