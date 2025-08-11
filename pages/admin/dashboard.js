@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react";
-import { supabase } from "@/lib/supabase";
-
+import { supabase } from "@/lib/supabaseClient";
 export default function Dashboard(){
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
