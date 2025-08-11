@@ -34,6 +34,9 @@ export default function Login(){
   return (
     <main style={{padding:24,maxWidth:520,margin:"0 auto",fontFamily:"ui-sans-serif,system-ui"}}>
       <h1>Admin Login</h1>
+      <div style={{fontSize:12,opacity:.6,marginBottom:8}}>
+  project: {process.env.NEXT_PUBLIC_SUPABASE_URL}
+</div>
       <form onSubmit={signIn} style={{display:"grid",gap:8}}>
         <input type="email" placeholder="email" value={email} onChange={e=>setEmail(e.target.value)} required />
         <input type="password" placeholder="password" value={password} onChange={e=>setPassword(e.target.value)} required />
