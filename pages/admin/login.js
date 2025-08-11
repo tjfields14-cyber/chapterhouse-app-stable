@@ -16,7 +16,7 @@ export default function Login(){
   };
 
   return (
-    <main style={{padding:24,fontFamily:"ui-sans-serif,system-ui",maxWidth:520,margin:"0 auto"}}>
+    <main style={{padding:24,maxWidth:520,margin:"0 auto",fontFamily:"ui-sans-serif,system-ui"}}>
       <h1>Admin Login</h1>
       <form onSubmit={submit} style={{display:"grid",gap:8}}>
         <input type="email" placeholder="email" value={email} onChange={e=>setEmail(e.target.value)} required/>

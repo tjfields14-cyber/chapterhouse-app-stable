@@ -8,15 +8,14 @@ export default function DevSignup(){
   const submit=async(e)=>{
     e.preventDefault(); setMsg(""); setBusy(true);
     try{
-      const { error: authErr } = await supabase.auth.signUp({
+      const { error } = await supabase.auth.signUp({
         email, password,
         options: { emailRedirectTo: window.location.origin + "/admin/login" }
       });
-      if(authErr) throw new Error(authErr.message);
+      if(error) throw new Error(error.message);
 
       const r = await fetch("/api/admin/allowlist",{
-        method:"POST",
-        headers:{ "Content-Type":"application/json" },
+        method:"POST", headers:{ "Content-Type":"application/json" },
         body: JSON.stringify({ email })
       });
       const j = await r.json();
@@ -28,8 +27,8 @@ export default function DevSignup(){
   };
 
   return (
-    <main style={{padding:24,fontFamily:"ui-sans-serif,system-ui",maxWidth:520,margin:"0 auto"}}>
-      <h1>Dev Admin Signup (temporary)</h1>
+    <main style={{padding:24,maxWidth:520,margin:"0 auto",fontFamily:"ui-sans-serif,system-ui"}}>
+      <h1>Dev Admin Signup</h1>
       <form onSubmit={submit} style={{display:"grid",gap:8}}>
         <input type="email" placeholder="email" value={email} onChange={e=>setEmail(e.target.value)} required/>
         <input type="password" placeholder="password" value={password} onChange={e=>setPassword(e.target.value)} required/>
